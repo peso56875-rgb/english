@@ -36,7 +36,6 @@ function selectAnswer(index){
   buttons.forEach((button,choiceIndex)=>{button.disabled=true;if(choiceIndex===correctIndex)button.classList.add('correct');else if(choiceIndex===index)button.classList.add('wrong');else button.classList.add('dimmed')});
   if(isCorrect){score++;$('#live-score').textContent=score;$('#feedback').textContent='✓ إجابة صحيحة — عاش يا بطل!';$('#feedback').classList.add('ok')}else{$('#feedback').textContent=`✕ الإجابة الصحيحة: ${question.choices[correctIndex].text}`;$('#feedback').classList.add('no')}
   answers.push({question:question.question,chosen:question.choices[index].text,correct:question.choices[correctIndex].text,isCorrect});tone(isCorrect);$('#next-button').disabled=false;
-  pendingAdvance=setTimeout(advanceQuiz,isCorrect?900:1900);
 }
 function advanceQuiz(){clearTimeout(pendingAdvance);if(current<quiz.length-1){current++;renderQuestion()}else finishQuiz()}
 $('#next-button').addEventListener('click',advanceQuiz);
