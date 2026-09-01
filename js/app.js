@@ -439,12 +439,24 @@ function renderFillStudyCard(container, item, index) {
   container.appendChild(card);
 }
 
-// Render Drawing & Application Card in Study Bank
+// Render Drawing & Application Card in Study Bank (Exam-Accurate Vector SVG Blueprints)
 function renderDrawingStudyCard(container, item, index) {
   const card = document.createElement('article');
   card.className = 'study-card study-card-drawing';
 
-  const componentsList = (item.components || []).map(comp => `<li>${escapeHtml(comp)}</li>`).join('');
+  const componentsList = (item.components || []).map(comp => `
+    <li class="label-item">
+      <span class="chk-icon">✓</span>
+      <span>${escapeHtml(comp)}</span>
+    </li>
+  `).join('');
+
+  const stepsList = (item.examSteps || []).map(step => `
+    <li class="step-item">
+      <span class="step-badge">خطوة</span>
+      <span class="step-text">${escapeHtml(step.replace(/^\d+\.\s*/, ''))}</span>
+    </li>
+  `).join('');
 
   card.innerHTML = `
     <div class="study-card-top">
@@ -456,36 +468,89 @@ function renderDrawingStudyCard(container, item, index) {
     <h3 class="study-drawing-title">${escapeHtml(item.title)}</h3>
     <p class="study-question drawing-prompt">${escapeHtml(item.question)}</p>
 
+    <!-- Vector SVG Blueprint Container -->
+    <div class="exam-svg-card-section">
+      <div class="blueprint-top-bar">
+        <div class="blueprint-badge-wrap">
+          <span class="live-dot"></span>
+          <span class="blueprint-label">EXAM BLUEPRINT — الرسم النموذجي المطلوب</span>
+        </div>
+        <button type="button" class="zoom-blueprint-btn" data-id="${escapeHtml(item.id)}">
+          🔍 تكبير المخطط (Full View)
+        </button>
+      </div>
+
+      <div class="exam-svg-blueprint-container">
+        ${item.svgBlueprint || '<div class="svg-placeholder">No SVG</div>'}
+      </div>
+    </div>
+
+    <!-- Exam Sketching Guide & Labels Grid -->
     <div class="drawing-details-grid">
+      <div class="drawing-steps-col">
+        <h4>✍️ خطوات الرسم في ورقة الامتحان (Step-by-Step Sketching):</h4>
+        <ol class="exam-steps-list">${stepsList || '<li>اتبع المخطط الهندسي أعلاه بدقة.</li>'}</ol>
+      </div>
+
       <div class="drawing-components-col">
-        <h4>📋 المكونات الرئيسية للتوضيح (Key Labels):</h4>
+        <h4>📋 البيانات الإلزامية في ورقة الإجابة (Mandatory Labels):</h4>
         <ul class="components-checklist">${componentsList}</ul>
         ${item.formula ? `
           <div class="formula-box">
-            <span class="formula-label">العلاقة الرياضية / المعادلة:</span>
-            <code>${escapeHtml(item.formula)}</code>
+            <span class="formula-label">📐 المعادلة وقانون التحويل:</span>
+            <code class="formula-code">${escapeHtml(item.formula)}</code>
           </div>
         ` : ''}
-      </div>
-
-      <div class="drawing-schematic-col">
-        <h4>📐 مخطط التوصيل والدائرة (Schematic / Wiring):</h4>
-        <pre class="schematic-code"><code>${escapeHtml(item.asciiDiagram || '')}</code></pre>
       </div>
     </div>
 
     ${item.note ? `
       <div class="study-note-box drawing-note">
-        <span class="note-icon">🔍</span>
+        <span class="note-icon">💡</span>
         <div class="note-body">
-          <strong>شرح المبدأ وطريقة التوصيل:</strong>
+          <strong>ملاحظة الامتحان وتفسير الأداء:</strong>
           <p>${escapeHtml(item.note)}</p>
         </div>
       </div>
     ` : ''}
   `;
+
+  // Attach zoom button click
+  const zoomBtn = card.querySelector('.zoom-blueprint-btn');
+  if (zoomBtn) {
+    zoomBtn.addEventListener('click', () => openBlueprintModal(item));
+  }
+
   container.appendChild(card);
 }
+
+// Blueprint Zoom Modal Functions
+function openBlueprintModal(item) {
+  const modal = $('#blueprint-modal');
+  if (!modal) return;
+  $('#modal-blueprint-title').textContent = item.title;
+  $('#modal-svg-content').innerHTML = item.svgBlueprint || '';
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBlueprintModal() {
+  const modal = $('#blueprint-modal');
+  if (!modal) return;
+  modal.classList.remove('active');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+// Modal Listeners
+const modalCloseBtn = $('#modal-close-button');
+const modalDoneBtn = $('#modal-done-button');
+const modalBackdrop = $('.blueprint-modal-backdrop');
+
+if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeBlueprintModal);
+if (modalDoneBtn) modalDoneBtn.addEventListener('click', closeBlueprintModal);
+if (modalBackdrop) modalBackdrop.addEventListener('click', closeBlueprintModal);
 
 // Type pills tab click handlers
 $$('.type-pill').forEach(pill => {
@@ -540,6 +605,11 @@ $('#sound-toggle').addEventListener('click', event => {
 
 // Keyboard Navigation
 window.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && $('#blueprint-modal') && $('#blueprint-modal').classList.contains('active')) {
+    closeBlueprintModal();
+    return;
+  }
+
   if (!$('#quiz-screen').classList.contains('active')) return;
 
   if (['1', '2', '3', '4'].includes(event.key) && $('#next-button').disabled) {
@@ -565,3 +635,4 @@ document.addEventListener('DOMContentLoaded', () => {
     openReview();
   }
 });
+
