@@ -1,60 +1,253 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#07111f">
-  <title>Data Networks | Challenge Mode</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090e17">
+  <title>Introduction to Mechatronics | MEC 141 Question Bank</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="ambient ambient-three"></div>
+
   <header class="topbar">
-    <a class="brand" href="#" id="brand-home" aria-label="Data Networks home"><span class="brand-mark">D<span>N</span></span><span>DATA NETWORKS<small>CHALLENGE MODE</small></span></a>
-    <nav class="mode-nav" aria-label="أقسام الموقع"><button id="nav-quiz" class="mode-link active">الاختبار</button><button id="nav-review" class="mode-link">المراجعة</button></nav>
-    <div class="top-actions"><span class="question-bank-count">121 سؤال</span><button id="sound-toggle" class="icon-button" aria-label="تشغيل أو إيقاف الصوت">♪</button></div>
+    <a class="brand" href="#" id="brand-home" aria-label="Mechatronics home">
+      <span class="brand-mark">MEC<span>141</span></span>
+      <span>MECHATRONICS<small>QUESTION BANK & CHALLENGE HUB</small></span>
+    </a>
+    <nav class="mode-nav" aria-label="أقسام الموقع">
+      <button id="nav-quiz" class="mode-link active"><span class="nav-icon">⚡</span> الاختبار التفاعلي</button>
+      <button id="nav-review" class="mode-link"><span class="nav-icon">📖</span> بنك المراجعة الشامل</button>
+    </nav>
+    <div class="top-actions">
+      <span class="question-bank-count">133 سؤال ومخطط</span>
+      <button id="sound-toggle" class="icon-button" aria-label="تشغيل أو إيقاف الصوت" title="تشغيل أو إيقاف الصوت">♪</button>
+    </div>
   </header>
 
   <main>
+    <!-- Start / Setup Screen -->
     <section id="start-screen" class="screen start-screen active">
       <div class="hero-copy">
-        <p class="eyebrow">مراجعة الداتا نتوركس <span></span></p>
-        <h1>افهم الشبكات<br><em>واكسر الامتحان.</em></h1>
-        <p class="hero-text">كل أسئلة الملفات في بنك واحد: IP Addressing، OSI، Ethernet، Wireless، Transmission Media والسيناريوهات المهمة.</p>
-        <div class="hero-stats"><article><strong id="hero-count">121</strong><span>سؤال شامل</span></article><article><strong>6</strong><span>موضوعات</span></article><article><strong>2</strong><span>اختبار + مراجعة</span></article></div>
+        <p class="eyebrow">Delta University • Faculty of Engineering <span></span></p>
+        <h1>افهم الميكاترونكس<br><em>واكتسح الامتحان.</em></h1>
+        <p class="hero-text">بنك أسئلة شامل لمقرر <strong>MEC 141</strong> يغطي جميع المحاضرات: الحساسات (Sensors I, II, III)، الـ LVDT، الإزاحة، القوة، الضغط، الحرارة، المشغلات والمتحكمات (Arduino)، وأسئلة أكمل والرسومات التطبيقية.</p>
+        <div class="hero-stats">
+          <article>
+            <strong id="hero-count">133</strong>
+            <span>سؤال ومخطط شامل</span>
+          </article>
+          <article>
+            <strong>8</strong>
+            <span>مجموعات تدريسية</span>
+          </article>
+          <article>
+            <strong>3</strong>
+            <span>أقسام: MCQs + أكمل + رسومات</span>
+          </article>
+        </div>
       </div>
+
       <form id="quiz-setup" class="setup-card">
-        <div class="card-glow"></div><span class="setup-number">01</span>
-        <h2>اختار نظام التحدي</h2><p>كل محاولة بترتيب جديد تمامًا ✦</p>
-        <label for="unit-select">الموضوع</label>
-        <div class="select-wrap"><select id="unit-select"><option value="all">كل الموضوعات</option><option value="IP Addressing">IP Addressing</option><option value="OSI & Addressing">OSI & Addressing</option><option value="Ethernet">Ethernet</option><option value="Wireless LAN">Wireless LAN</option><option value="Transmission Media">Transmission Media</option><option value="Protocols & Scenarios">Protocols & Scenarios</option></select></div>
-        <label>عدد الأسئلة</label>
-        <div id="count-options" class="count-options" role="radiogroup" aria-label="عدد الأسئلة"><button type="button" data-count="10">10</button><button type="button" data-count="20" class="selected">20</button><button type="button" data-count="50">50</button><button type="button" data-count="all">الكل</button></div>
-        <button class="primary-button" type="submit"><span>ابدأ التحدي</span><b>↗</b></button>
-        <button class="review-shortcut" id="review-shortcut" type="button">أو افتح وضع المراجعة بالإجابات ←</button>
+        <div class="card-glow"></div>
+        <span class="setup-number">01</span>
+        <h2>تخصيص الاختبار</h2>
+        <p>كل محاولة بترتيب عشوائي للأسئلة والخيارات ✦</p>
+        
+        <label for="unit-select">الموضوع التدريسي</label>
+        <div class="select-wrap">
+          <select id="unit-select">
+            <option value="all">كل الموضوعات (بنك شامل 110 سؤال)</option>
+            <option value="SET_A">Set A — Sensor Fundamentals & Terminology</option>
+            <option value="SET_B">Set B — Displacement, Proximity & Position Sensors</option>
+            <option value="SET_C">Set C — LVDT, Capacitive & Strain Gauges</option>
+            <option value="SET_D">Set D — Magnetic Sensors & Velocity Measurement</option>
+            <option value="SET_E">Set E — Force, Pressure & Piezoelectric Sensors</option>
+            <option value="SET_F">Set F — Liquid Level & Temperature Sensors</option>
+            <option value="SET_G">Set G — Light Sensors, Semiconductor Temp & Switches</option>
+            <option value="SET_H">Set H — Mechatronics Systems, Actuators & Microcontrollers</option>
+            <option value="SET_FILL">Part II — Fill in the Blanks (30 أسئلة أكمل)</option>
+          </select>
+        </div>
+
+        <label>عدد الأسئلة في الجولة</label>
+        <div id="count-options" class="count-options" role="radiogroup" aria-label="عدد الأسئلة">
+          <button type="button" data-count="10">10</button>
+          <button type="button" data-count="20" class="selected">20</button>
+          <button type="button" data-count="50">50</button>
+          <button type="button" data-count="all">الكل</button>
+        </div>
+
+        <button class="primary-button" type="submit">
+          <span>ابدأ الاختبار الآن</span>
+          <b>↗</b>
+        </button>
+        <button class="review-shortcut" id="review-shortcut" type="button">
+          أو افتح بنك المراجعة بالإجابات والهايلايت ←
+        </button>
       </form>
     </section>
 
+    <!-- Quiz Screen -->
     <section id="quiz-screen" class="screen quiz-screen" aria-live="polite">
-      <header class="quiz-header"><div><button id="exit-button" class="text-button">→ خروج</button><span id="unit-badge" class="unit-badge"></span></div><div class="score-mini"><span>النتيجة</span><strong id="live-score">0</strong></div></header>
-      <div class="progress-meta"><span id="progress-label">السؤال 1 من 20</span><span id="progress-percent">5%</span></div><div class="progress-track"><div id="progress-fill"></div></div>
-      <article class="question-card"><span id="question-number" class="large-number">01</span><p id="question-text" class="question-text" dir="ltr"></p><div id="options-list" class="options-list" dir="ltr"></div><div id="feedback" class="feedback" role="status"></div></article>
-      <div class="quiz-footer"><span>اضغط على التالي أو زر Enter للمتابعة</span><button id="next-button" class="next-button" disabled>السؤال التالي <b>←</b></button></div>
+      <header class="quiz-header">
+        <div class="quiz-meta-left">
+          <button id="exit-button" class="text-button">→ خروج</button>
+          <span id="unit-badge" class="unit-badge"></span>
+        </div>
+        <div class="quiz-meta-right">
+          <div class="score-mini">
+            <span>النتيجة الحالية</span>
+            <strong id="live-score">0</strong>
+          </div>
+        </div>
+      </header>
+
+      <div class="progress-meta">
+        <span id="progress-label">السؤال 1 من 20</span>
+        <span id="progress-percent">5%</span>
+      </div>
+      <div class="progress-track">
+        <div id="progress-fill"></div>
+      </div>
+
+      <article class="question-card">
+        <div class="question-card-header">
+          <span id="question-number" class="large-number">01</span>
+          <span id="question-type-tag" class="type-tag">MCQ</span>
+        </div>
+        <p id="question-text" class="question-text" dir="ltr"></p>
+        <div id="options-list" class="options-list" dir="ltr"></div>
+        <div id="feedback" class="feedback" role="status"></div>
+      </article>
+
+      <div class="quiz-footer">
+        <span class="keyboard-tip">💡 يمكنك استخدام أرقام 1, 2, 3, 4 للاختيار وزر Enter للمتابعة</span>
+        <button id="next-button" class="next-button" disabled>
+          السؤال التالي <b>←</b>
+        </button>
+      </div>
     </section>
 
+    <!-- Review / Study Bank Screen -->
     <section id="review-screen" class="screen review-screen">
-      <div class="review-hero"><div><p class="eyebrow">STUDY MODE <span></span></p><h1>راجع براحتك،<br><em>الإجابة قدامك.</em></h1><p>كل سؤال تحته الأربع اختيارات، والإجابة الصحيحة عليها هايلايت أخضر مع ملاحظة توضيحية عند الحاجة.</p></div><div class="review-counter"><strong id="visible-review-count">121</strong><span>سؤال ظاهر</span></div></div>
-      <div class="review-toolbar"><label class="search-field"><span>⌕</span><input id="review-search" type="search" placeholder="دوّر على سؤال أو كلمة..." aria-label="البحث في المراجعة"></label><div class="select-wrap"><select id="review-filter"><option value="all">كل الموضوعات</option><option value="IP Addressing">IP Addressing</option><option value="OSI & Addressing">OSI & Addressing</option><option value="Ethernet">Ethernet</option><option value="Wireless LAN">Wireless LAN</option><option value="Transmission Media">Transmission Media</option><option value="Protocols & Scenarios">Protocols & Scenarios</option></select></div></div>
-      <div id="review-bank" class="review-bank" dir="ltr"></div><p id="review-empty" class="review-empty" hidden>مفيش أسئلة مطابقة للبحث.</p>
+      <div class="review-hero">
+        <div class="review-hero-text">
+          <p class="eyebrow">MEC 141 STUDY BANK <span></span></p>
+          <h1>بنك الأسئلة الشامل للمراجعة<br><em>الإجابات الصحيحة عليها هايلايت واضح.</em></h1>
+          <p>تصفح جميع أسئلة الاختياري (80)، أسئلة أكمل الفراغات (30)، ومخططات الرسومات الهندسية وتوصيل الأردوينو (23) مع الإجابات النموذجية والملاحظات والشروحات.</p>
+        </div>
+        <div class="review-counters">
+          <div class="counter-box">
+            <strong id="visible-review-count">133</strong>
+            <span>عنصر ظاهر</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-toolbar">
+        <div class="search-wrap">
+          <label class="search-field">
+            <span class="search-icon">🔍</span>
+            <input id="review-search" type="search" placeholder="ابحث برقم السؤال، اسم الحساس، أو أي كلمة (مثل: LVDT, Thermistor, Hall, Arduino)..." aria-label="البحث في المراجعة">
+          </label>
+        </div>
+        <div class="filter-controls">
+          <div class="select-wrap">
+            <select id="review-filter">
+              <option value="all">كل الموضوعات (All Topics)</option>
+              <option value="SET_A">Set A — Sensor Fundamentals</option>
+              <option value="SET_B">Set B — Displacement & Proximity</option>
+              <option value="SET_C">Set C — LVDT, Capacitive & Strain</option>
+              <option value="SET_D">Set D — Magnetic & Velocity</option>
+              <option value="SET_E">Set E — Force, Pressure & Piezo</option>
+              <option value="SET_F">Set F — Level & Temperature</option>
+              <option value="SET_G">Set G — Light & Switches</option>
+              <option value="SET_H">Set H — Mechatronics & Actuators</option>
+              <option value="SET_FILL">Part II — Fill in the Blanks</option>
+              <option value="SET_DRAW">Part III — Drawings & Schematics</option>
+            </select>
+          </div>
+
+          <div class="type-pills" role="tablist">
+            <button class="type-pill active" data-type="all" type="button">الكل (133)</button>
+            <button class="type-pill" data-type="mcq" type="button">اختياري (80)</button>
+            <button class="type-pill" data-type="fill" type="button">أكمل (30)</button>
+            <button class="type-pill" data-type="drawing" type="button">رسومات ومخططات (23)</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="review-bank" class="review-bank" dir="ltr"></div>
+      <p id="review-empty" class="review-empty" hidden>مفيش عناصر مطابقة للبحث أو التصفية الحالية.</p>
     </section>
 
+    <!-- Results Screen -->
     <section id="result-screen" class="screen result-screen">
-      <div class="result-ring" id="result-ring"><div><strong id="result-percent">0%</strong><span>نسبة النجاح</span></div></div><p class="eyebrow centered">MISSION COMPLETE <span></span></p><h2 id="result-title">أداء جامد!</h2><p id="result-message"></p>
-      <div class="result-stats"><article><span class="dot green"></span><strong id="correct-count">0</strong><small>إجابة صحيحة</small></article><article><span class="dot red"></span><strong id="wrong-count">0</strong><small>إجابة خاطئة</small></article><article><span class="dot blue"></span><strong id="best-score">0%</strong><small>أفضل نتيجة</small></article></div>
-      <div class="result-actions"><button id="retry-button" class="primary-button"><span>جرّب ترتيب جديد</span><b>↻</b></button><button id="review-mistakes-button" class="secondary-button">راجع البنك بالإجابات</button><button id="home-button" class="secondary-button">تغيير نظام التحدي</button></div>
-      <details id="review-details" class="review"><summary>راجع إجاباتك الغلط <span id="review-count"></span></summary><div id="review-list"></div></details>
+      <div class="result-ring" id="result-ring">
+        <div>
+          <strong id="result-percent">0%</strong>
+          <span>نسبة النجاح</span>
+        </div>
+      </div>
+      <p class="eyebrow centered">CHALLENGE COMPLETED <span></span></p>
+      <h2 id="result-title">أداء ممتاز!</h2>
+      <p id="result-message"></p>
+
+      <div class="result-stats">
+        <article>
+          <span class="dot green"></span>
+          <strong id="correct-count">0</strong>
+          <small>إجابات صحيحة</small>
+        </article>
+        <article>
+          <span class="dot red"></span>
+          <strong id="wrong-count">0</strong>
+          <small>إجابات خاطئة</small>
+        </article>
+        <article>
+          <span class="dot blue"></span>
+          <strong id="best-score">0%</strong>
+          <small>أعلى نسبة محققة</small>
+        </article>
+      </div>
+
+      <div class="result-actions">
+        <button id="retry-button" class="primary-button">
+          <span>اختبار جديد بترتيب مختلف</span>
+          <b>↻</b>
+        </button>
+        <button id="review-mistakes-button" class="secondary-button">
+          تصفح بنك المراجعة الكامل
+        </button>
+        <button id="home-button" class="secondary-button">
+          تغيير إعدادات التحدي
+        </button>
+      </div>
+
+      <details id="review-details" class="review">
+        <summary>
+          <span>راجع إجاباتك التي تحتاج لتصحيح</span>
+          <span id="review-count" class="badge-count"></span>
+        </summary>
+        <div id="review-list"></div>
+      </details>
     </section>
   </main>
-  <footer><span>DATA NETWORKS / 2026</span><span>افهمها مش تحفظها ✦</span></footer>
-  <script src="js/questions.js"></script><script src="js/app.js"></script>
-</body></html>
+
+  <footer>
+    <div class="footer-content">
+      <span>DELTA UNIVERSITY FOR SCIENCE AND TECHNOLOGY — FACULTY OF ENGINEERING</span>
+      <span>COURSE: INTRODUCTION TO MECHATRONICS (MEC 141) ✦ SPRING 2025-26</span>
+    </div>
+  </footer>
+
+  <script src="js/questions.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
